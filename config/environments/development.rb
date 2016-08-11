@@ -41,5 +41,5 @@ Rails.application.configure do
   
   
   #needed for devise
-config.action_mailer.default_url_options = { host: 'localhost', port: 8080 }
+config.action_mailer.default_url_options = { host: "http://gist-musomoka.c9users.io", port: 8080 }
 end
