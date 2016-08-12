@@ -1,29 +1,45 @@
-<%= image_tag @movie.image.url(:medium)%>
+<div class="panel panel -default">
+      <div class="panel-body">
+            <div class="row">
+              <div class="col-md-4">
+                <%= image_tag  @movie.image.url(:medium)%>
+              
+                <div class="table-responsive">
+                    <table class="table">
+                      <tbody>
+                        <tr>
+                          <td><strong>Title:</strong></td>
+                          <td><%= @movie.Title %></td>
+                          
+                        </tr>
+                        <tr>
+                          <td><strong>Desscription:</strong></td>
+                          <td><%= @movie.Desscription %></td>
+                          
+                        </tr>
+                        <tr>
+                          <td><strong>Movie length:</strong></td>
+                          <td><%= @movie.Movie_length %></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Director:</strong></td>
+                          <td><%= @movie.Director %></td>
+                        </tr>
+                        
+                        <tr>
+                          <td><strong>Rating:</strong></td>
+                          <td><%= @movie.rating %></td>
+                        </tr>
+                        
+                      </tbody>
+                    </table>
+                  </dive>
+               </div>
+            </div>
+        </div>
+  </div>
+  
 
-<p>
-  <strong>Title:</strong>
-  <%= @movie.Title %>
-</p>
-
-<p>
-  <strong>Desscription:</strong>
-  <%= @movie.Desscription %>
-</p>
-
-<p>
-  <strong>Movie length:</strong>
-  <%= @movie.Movie_length %>
-</p>
-
-<p>
-  <strong>Director:</strong>
-  <%= @movie.Director %>
-</p>
-
-<p>
-  <strong>Rating:</strong>
-  <%= @movie.rating %>
-</p>
 
 <%= link_to 'Edit', edit_movie_path(@movie) %> |
 <%= link_to 'Back', movies_path %>
