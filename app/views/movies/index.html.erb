@@ -14,9 +14,10 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody> 
     <% @movies.each do |movie| %>
       <tr>
+        <td><%= image_tag movie.image.url(:medium)%></td>
         <td><%= movie.Title %></td>
         <td><%= movie.Desscription %></td>
         <td><%= movie.Movie_length %></td>
