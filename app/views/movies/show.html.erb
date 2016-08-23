@@ -1,64 +1,94 @@
 <div class="panel panel -default">
       <div class="panel-body">
-            <div class="row">
-              <div class="col-md-4">
-                <%= image_tag  @movie.image.url(:medium)%>
-              
-                <div class="table-responsive">
-                    <table class="table">
-                      <tbody>
-                        <tr>
-                          <td><strong>Title:</strong></td>
-                          <td><%= @movie.Title %></td>
-                          
-                        </tr>
-                        <tr>
-                          <td><strong>Desscription:</strong></td>
-                          <td><%= @movie.Desscription %></td>
-                          
-                        </tr>
-                        <tr>
-                          <td><strong>Movie length:</strong></td>
-                          <td><%= @movie.Movie_length %></td>
-                        </tr>
-                        <tr>
-                          <td><strong>Director:</strong></td>
-                          <td><%= @movie.Director %></td>
-                        </tr>
-                        
-                        <tr>
-                          <td><strong>Rating:</strong></td>
-                          <td><%= @movie.rating %></td>
-                        </tr>
-                        
-                      </tbody>
-                    </table>
-                    <p><%= link_to "Write a review", new_movie_review_path(@movie)%></p>
-                </div>
-               </div>
-             
-                  <div .col-md-7 com-md-offset-1 >
-                <div class="pull-right">
-                   <P><%= @movie.Desscription %> </P>
-                <% if @reviews.blank? %>
-                      <h3> "No Reviews as of yet, Would you like to add the first" </h3>
-                    <div><%= link_to"write Review", new_movie_review_path(@movie), class: "btn btn_info" %></div>
+        <div class="row">
+          <div class ="containter">
+                   <div class="col-md-5 col-sm-3">
+                   <%= image_tag  @movie.image.url(:medium)%>
 
-                    <%else%>
-                        <% @reviews.each do |review| %>
-                        <div class="reviews"
-                        <P> <%review.rating %> </p>
-                        <p> <%review.comment %></p>    
-                    <%end%>
-                    <%end%>
-                    
-                </div>
+                    <div class="table-responsive">
+                        <table class="table">
+                          <tbody>
+                            <tr>
+                              <td><strong>Title:</strong></td>
+                              <td><%= @movie.Title %></td>
+
+                            </tr>
+                           
+                              <tr>
+                              <td><strong>Desscription:</strong></td>
+                              <td><%= @movie.Desscription %></td>
+
+                            </tr>
+                            
+                             <tr>
+                              <td><strong>Movie length:</strong></td>
+                              <td><%= @movie.Movie_length %></td>
+                            </tr>
+                            
+                             <tr>
+                              <td><strong>Director:</strong></td>
+                              <td><%= @movie.Director %></td>
+                            </tr>
+
+                            
+                             <tr>
+                              <td><strong>Rating:</strong></td>
+                              <td><%= @movie.rating %></td>
+                            </tr>
+
+                          </tbody>
+                        </table>
+                        <%= link_to 'Edit', edit_movie_path(@movie),class: "btn btn-danger btn-md" %>
+                        <%= link_to 'Back', movies_path, class: "btn btn-danger btn-md"%>
+                        
+                    </div>
+                   </div>
             </div>
-        </div>
-  </div>
-  </div>
-  
+            <div .col-md-6 com-md-offset-1 >
+                 
+                  
+                    <%if @reviews.blank? %>
+                        <h3>No reviews, Would you link to create one</h3>
+                        <%= link_to 'New Review', new_movie_review_path(@movie), class: "btn btn-danger btn-md" %>
+                            
+                    <%else%>
+                      
+                        <%= link_to 'New Review', new_movie_review_path(@movie), class: "btn btn-danger btn-md" %> 
+                          <% @reviews.each do |review| %> 
+                           <div class= 'reviews'>                          
+                                <p><%=@movie.user.email%></p>
+                               <!-- <div class='ratings' data-score= <%=review.rating %> data-path ='./app/assets' ></div> -->
+                               <%=tag("div", data: {score: review.rating, path: './app/assets'}, class:'ratings' )%>
+                                <%=review.rating %>
+                                <p> <%= review.comment %></p>                                                
+                            </div>
+                          <%end%>
+    
+                    <%end%>
+             
+             </div> 
+               
+            <div class='ratt' data-score='5'></div>
+           
+            </div>
+       
 
+      </div>
+ 
+      
+</div>
+ 
 
-<%= link_to 'Edit', edit_movie_path(@movie) %> |
-<%= link_to 'Back', movies_path %>
+<script>
+$('.ratings').raty({
+    path: function(){
+         return $(this).attr('data-path');
+    },
+    readOnly: 'true',
+    
+  score: function() {
+    return $(this).attr('data-score');
+  }
+});
+
+</script>
